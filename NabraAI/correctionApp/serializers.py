@@ -15,7 +15,7 @@ class EmailSerializer(serializers.ModelSerializer):
     class Meta:
         model = NabraUser
         fields = ('email',)
-        
+
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = NabraUser
