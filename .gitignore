@@ -1,0 +1,37 @@
+.vscode/*
+
+NabraEnv/*
+NabraEnv/Lib/*
+
+NabraEnv39/*
+NabraEnv39/Lib/*
+
+NabraAI/AI Models/New/*
+
+NabraAI/AI Models/v5/Idgham_tajweed_rule_model/*
+NabraAI/AI Models/v5/Ikhfaa_tajweed_rule_model/*
+NabraAI/AI Models/v5/imala_tajweed_rule_model/*
+NabraAI/AI Models/v5/madd_2_tajweed_rule_model/*
+NabraAI/AI Models/v5/madd_6_Lazim_tajweed_rule_model/*
+NabraAI/AI Models/v5/madd_6_tajweed_rule_model/*
+NabraAI/AI Models/v5/madd_246_tajweed_rule_model/*
+NabraAI/AI Models/v5/qalqala_tajweed_rule_model/*
+NabraAI/AI Models/v5/tafkhim_tajweed_rule_model/*
+
+NabraAI/AI Models/Deepspeech/*
+
+NabraAI/Data/* 
+
+NabraAIDeepspeech/AI Models/Deepspeech/*
+
+NabraAI/Audios/*
+
+NabraAI/correctionApp/migrations/*
+NabraAI/correctionApp/__pycache__/*
+
+NabraAI/NabraAI/__pycache__/*
+
+NabraAIDeepspeech/correctionApp/migrations/*
+NabraAIDeepspeech/correctionApp/__pycache__/*
+
+NabraAIDeepspeech/NabraAIDeepspeech/__pycache__/*
