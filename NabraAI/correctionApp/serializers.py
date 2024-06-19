@@ -45,3 +45,8 @@ class AudioFileSerializer(serializers.ModelSerializer):
     class Meta:
         model = AudioFile
         fields = ['id', 'audio_file', 'surah_num', 'ayah_num', 'email', 'uploaded_at']
+
+class AudioSearchFileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AudioSearchFile
+        fields = ['id', 'audio_file', 'uploaded_at']

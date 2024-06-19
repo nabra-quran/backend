@@ -4,6 +4,7 @@ from rest_framework.views import APIView
 from sklearn.preprocessing import StandardScaler
 from django.contrib.auth import authenticate
 from django.core.exceptions import ValidationError
+from fuzzywuzzy import process
 
 from .models import *
 from .serializers import *
@@ -234,3 +235,36 @@ def calculate_text_score(predicted_text, original_text):
     intersection_count = sum(1 for p, o in zip(predicted_text, original_text) if p == o)
     total_count = len(original_text)
     return (intersection_count / total_count) * 100
+
+class AudioSearchFileViewSet(viewsets.ModelViewSet):
+    queryset = AudioSearchFile.objects.all()
+    serializer_class = AudioSearchFileSerializer
+    
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+
+        audio_file = serializer.instance
+        recorded_file = audio_file.audio_file.path
+
+        predictions_text = apply_deepspeech_model(recorded_file)['predictions_text']
+        surah_num, ayah_num, ayah_text = find_most_similar(predictions_text)
+        response_data = {
+            'surah_num':surah_num,
+            'ayah_num': ayah_num,
+            'ayah_text': ayah_text,
+            'predictions_text': predictions_text,
+        }
+        return Response(response_data, status=status.HTTP_201_CREATED)
+
+def find_most_similar(predicted_text):
+    csv_file_path = 'Data/hizb60_and_alfatiha_text_indexing.csv' 
+    df = pd.read_csv(csv_file_path)
+    choices = df['aya_text'].tolist()
+    best_match, score = process.extractOne(predicted_text, choices)
+    row = df[df['aya_text'] == best_match]
+    surah_num = row['sura_no']
+    ayah_num = row['aya_no']
+    ayah_text = row['aya_text']
+    return surah_num, ayah_num, ayah_text

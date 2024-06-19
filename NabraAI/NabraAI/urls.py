@@ -5,6 +5,7 @@ from correctionApp.views import *
 
 router = DefaultRouter()
 router.register(r'audiofiles', AudioFileViewSet)
+router.register(r'audiosearchfiles', AudioSearchFileViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

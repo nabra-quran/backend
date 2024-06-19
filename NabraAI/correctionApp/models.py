@@ -143,3 +143,16 @@ class AudioFile(models.Model):
 
     def __str__(self):
         return f"Surah {self.surah_num}, Ayah {self.ayah_num} - {self.email}"
+
+def generate_unique_search_filename(instance, filename):
+    ext = filename.split('.')[-1]
+    random_id = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
+    new_filename = f"search_{random_id}.{ext}"
+    return os.path.join('', new_filename)
+
+class AudioSearchFile(models.Model):
+    audio_file = models.FileField(upload_to=generate_unique_search_filename)
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"The audio {self.audio_file}"
