@@ -25,7 +25,7 @@ class UserListView(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({"detail": "Internal Server Error"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-    
+
 class RegisterView(generics.CreateAPIView):
     queryset = NabraUser.objects.all()
     serializer_class = RegisterSerializer
@@ -268,3 +268,15 @@ def find_most_similar(predicted_text):
     ayah_num = row['aya_no']
     ayah_text = row['aya_text']
     return surah_num, ayah_num, ayah_text
+
+class Hisb60View(APIView):
+    def get(self, request, format=None):
+        try:
+            csv_file_path = 'Data/hizb60_and_alfatiha_text_indexing.csv' 
+            df = pd.read_csv(csv_file_path)
+            response_data = {
+                'hisb': df,
+            }
+            return Response(response_data, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({"detail": "Internal Server Error"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

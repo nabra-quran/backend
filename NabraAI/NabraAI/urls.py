@@ -14,4 +14,5 @@ urlpatterns = [
     path('login/', LoginView.as_view(), name='login'),
     path('user/', UserDetailByEmailView.as_view(), name='user-detail-by-email'),
     path('users/', UserListView.as_view(), name='user-list'),
+    path('hisb60/', Hisb60View.as_view(), name='hisb60'),
 ]
