@@ -7,7 +7,8 @@ SECRET_KEY = 'django-insecure-gqf2o%%m=$ox$$*i#bfct54%!qutp!y@f3q1ly-u4om4kxkgw(
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.1.5','127.0.0.1']
 
 INSTALLED_APPS = [
     # to allows in-browser requests to your Django application from other origins
